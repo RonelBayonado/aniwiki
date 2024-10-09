@@ -1,38 +1,250 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 .App {
+  padding-top: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
+  min-height: 100vh;
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  background-color: #282c34;
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 5vh;
+  color: orange;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 50px;
+}
+
+.App-header h1 {
+  font-size: 40px;
+  margin-right: 20px;
+}
+
+.leftHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.leftHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.searchButton {
+  margin-left: 12px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  font-size: 28px;
+  transition: font-size 0.1s ease-in-out;
+}
+
+.rightHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+}
+
+.navigation li {
+  margin-right: 20px;
+  font-size: 26px;
+  cursor: pointer;
+  font-weight: bold;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.navigation li:hover {
+  color: orange;
+  transform: translateY(-4px);
+  transition: color 0.5s ease-in-out, transform 0.3s ease-in-out;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.profile {
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner .left {
+  text-align: left;
+  color: white;
+}
+
+.left {
+  margin-right: 20px;
+  width: 80%;
+}
+
+.left h1 {
+  font-size: 80px;
+}
+
+.left p {
+  font-size: 20px;
+}
+
+.bannerImage {
+  border-radius: 30px;
+  opacity: 0.65;
+  max-width: 100%;
+}
+
+.addToFavoritesButton, .detailsButton {
+  margin-top: 25px;
+  font-size: 20px;
+  padding-top: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  border-radius: 100px;
+  border: 0px;
+  cursor: pointer;
+}
+
+.addToFavoritesButton {
+  background-color: rgb(255, 88, 88);
+  color: white;
+}
+
+.detailsButton {
+  background-color: orange;
+  color: white;
+  margin-right: 10px;
+}
+
+.detailsButton:hover {
+  background-color: rgb(204, 133, 0);
+  transition: background-color 0.2s ease;
+}
+.addToFavoritesButton:hover {
+  background-color: rgb(255, 47, 47);
+  transition: background-color 0.2s ease;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  backdrop-filter: blur(10px);
+  z-index: 1; 
+}
+
+.detailsModal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 5%;
+  transform: translate(-50%, -5%);
+  z-index: 2;
+  color: white;
+}
+.imageSynopsisContainer {
+  display: flex;
+  align-items: start;
+  flex-direction: row;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.imageSynopsisContainer p {
+  font-size: 1.2em;
+  margin-left: 20px;
+}
+
+.popularAnimes {
+  margin-top: 30px;
+}
+
+.popularAnimes h1 {
+  color: orange;
+  text-align: left;
+  font-size: 30px;
+}
+
+.popularAnimes ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin-top: 30px;
+  font-size: 12px;
+  color: white;
+}
+
+.popularAnimes ul li{
+  width: 16%;
+  margin-bottom: 20px;
+}
+
+.popularAnimes img {
+  height: 300px;
+  border-radius: 10px;
+}
+
+@media screen and (max-width: 1100px) {
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
   }
-  to {
-    transform: rotate(360deg);
+  .bannerImage {
+    margin-top: 20px;
+    border-radius: 30px;
+    opacity: 0.65;
+    max-width: 100%;
+  }
+  .banner .left {
+    text-align: center;
+  }
+  .left {
+    width: 100%;
+  }
+}
+
+@media screen and (min-width: 1100px) and (max-width: 1500px) {
+  .banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  .bannerImage {
+    margin-top: 20px;
+    border-radius: 30px;
+    opacity: 0.65;
+    width: 1000px;
+  }
+  .banner .left {
+    text-align: center;
+  }
+  .left {
+    width: 85%;
   }
 }
