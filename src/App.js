@@ -134,7 +134,7 @@ function App() {
               <p>{synopsis}</p>
             </div>
             <YouTube videoId={youtubeId} options={options} onReady={_onReady} id="video"/>
-            <button onClick={closeModal}>Exit</button>
+            <button className='detailsButton' onClick={closeModal}>Exit</button>
           </div>
         </>
       )}
