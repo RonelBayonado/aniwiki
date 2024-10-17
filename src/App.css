@@ -38,6 +38,10 @@
   align-items: center;
 }
 
+.leftHeader h1 {
+  cursor: pointer;
+}
+
 .searchButton {
   margin-left: 12px;
   font-size: 25px;

@@ -1,26 +1,20 @@
 import { React, useState, useEffect } from "react";
 import AddToFavoritesButton from './addToFavoritesButton'
 import DetailsButton from './detailsbutton';
-import YouTube from "react-youtube";
-import { useNavigate } from 'react-router-dom';
 import { fetchTopAnime } from './../api/animeApi';
-import { FaSearch } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
-import { CiLogin } from "react-icons/ci";
+import Detailsmodal from "./Detailsmodal";
+import Header from "./header";
 
 const Homepage = () => {
   const [anime, setAnime] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchValue, setSearchValue] = useState('');
   const [videoOpen, setVideoOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [youtubeId, setYoutubeId] = useState('');
   const [synopsis, setSynopsis] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const getAnimeData = async () => {
@@ -35,21 +29,7 @@ const Homepage = () => {
     }
     getAnimeData();
   },[])
-/*
-  useEffect(() => {
-    const getSearchData = async () => {
-      try {
-        const data = await searchAnime();
-        setAnime(data);
-        setLoading(false);
-      } catch (error) {
-        setError(error.message);
-        setLoading(false);
-      }
-    }
-    getSearchData();
-  },[])
-*/
+
   const details = (synopsis, title, image, youtubeId) => {
     setDetailsOpen(true);
     setTitle(title);
@@ -61,55 +41,17 @@ const Homepage = () => {
     setVideoOpen(false);
     setDetailsOpen(false);
   }
-  const options = {
-    height: '720',
-    width: '1280',
-    playerVars: {
-      autoplay: 1,
-      controls: 1,
-    },
-  };
-  const _onReady = (event) => {
-    event.target.pauseVideo();
-  }
-  const handleSearch = () => {
-    if (searchValue.trim()) {
-      navigate(`/search/${searchValue}`);
-    }
-  }
+ 
   return (
     <div className="App">
-      <header className="App-header">
-        <div className='leftHeader'>
-          <h1>AnimeWiki</h1>  
-          <input
-            type='text'
-            value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            placeholder='Search for Anime'
-            style={{
-              fontSize: '16px',
-              padding: '10px',
-              borderRadius: '8px'
-            }}
-          />
-          <FaSearch className='searchButton' onClick={handleSearch} />
-        </div>    
-        <nav className='rightHeader'>
-          <ul className='navigation'>
-            <li>All Animes</li>
-            <li>Favorites</li>
-          </ul>     
-          {loggedIn ? <CgProfile className='profile'/> : <CiLogin className='profile'/>}
-        </nav>       
-      </header>
+      <Header />
       <div className="banner">
         <div className='left'>
           <h1>
             {loading === false ? anime[0].title : 'Loading...'}
           </h1>
           <p>{loading === false ? anime[0].synopsis : 'Loading...'}</p>
-          <DetailsButton onClick={() => details(anime[0].synopsis, anime[0].title, anime[0].images.jpg.image_url, anime[0].trailer.youtube_id)}   />
+          <DetailsButton onClick={() => details(anime[0].synopsis, anime[0].title, anime[0].images.jpg.image_url, anime[0].trailer.youtube_id)} />
           <AddToFavoritesButton />
         </div>
         <div className='right'>
@@ -130,18 +72,13 @@ const Homepage = () => {
           </ul>
       </div>
       {detailsOpen && (
-        <>
-          <div class="modal-overlay"></div>
-          <div className='detailsModal'>
-            <h1>{title}</h1>
-            <div className='imageSynopsisContainer'>
-              <img src={image} alt={title} />
-              <p>{synopsis}</p>
-            </div>
-            <YouTube videoId={youtubeId} options={options} onReady={_onReady} id="video"/>
-            <button className='detailsButton' onClick={closeModal}>Exit</button>
-          </div>
-        </>
+          <Detailsmodal 
+            title={title} 
+            image={image} 
+            synopsis={synopsis} 
+            youtubeId={youtubeId} 
+            closeModal={closeModal}
+          />
       )}
     </div>
   );

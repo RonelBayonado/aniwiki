@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { searchAnime } from '../api/animeApi';
 import  DetailsButton  from '../components/detailsbutton';
 import  AddToFavoritesButton  from '../components/addToFavoritesButton'; 
-import YouTube from "react-youtube";
+import Header from "./header";
+import Detailsmodal from "./Detailsmodal";
 
 const SearchResults = () => {
   const { query } = useParams();
@@ -46,20 +47,10 @@ const SearchResults = () => {
     setVideoOpen(false);
     setDetailsOpen(false);
   }
-  const options = {
-    height: '720',
-    width: '1280',
-    playerVars: {
-      autoplay: 1,
-      controls: 1,
-    },
-  };
-  const _onReady = (event) => {
-    event.target.pauseVideo();
-  }
 
   return (
     <div className="App">
+      <Header />
       <div className='popularAnimes'>
         {loading === false ? <h1>Search Results of {query}</h1> : <h1>Loading...</h1>}
         <ul>
@@ -74,18 +65,13 @@ const SearchResults = () => {
         </ul>
       </div>
       {detailsOpen && (
-        <>
-          <div class="modal-overlay"></div>
-          <div className='detailsModal'>
-            <h1>{title}</h1>
-            <div className='imageSynopsisContainer'>
-              <img src={image} alt={title} />
-              <p>{synopsis}</p>
-            </div>
-            <YouTube videoId={youtubeId} options={options} onReady={_onReady} id="video"/>
-            <button className='detailsButton' onClick={closeModal}>Exit</button>
-          </div>
-        </>
+        <Detailsmodal 
+          title={title} 
+          image={image} 
+          synopsis={synopsis} 
+          youtubeId={youtubeId} 
+          closeModal={closeModal}
+        />
       )}
     </div>
   )
