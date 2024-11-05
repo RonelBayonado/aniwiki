@@ -18,17 +18,13 @@ const Header = () => {
   return (
     <header className="App-header">
         <div className='leftHeader'>
-          <h1 onClick={() => navigate('/')}>AnimeWiki</h1>  
+          <h1 onClick={() => navigate('/')}>AniWiki</h1>  
           <input
             type='text'
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
             placeholder='Search for Anime'
-            style={{
-              fontSize: '16px',
-              padding: '10px',
-              borderRadius: '8px'
-            }}
+            className="searchBar"
           />
           <FaSearch className='searchButton' onClick={handleSearch} />
         </div>    

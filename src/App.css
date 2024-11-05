@@ -32,16 +32,15 @@
   align-items: center;
 }
 
-.leftHeader {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 .leftHeader h1 {
   cursor: pointer;
 }
+.searchBar {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 8px;
 
+}
 .searchButton {
   margin-left: 12px;
   font-size: 25px;
@@ -160,6 +159,8 @@
 
 .detailsModal {
   display: flex;
+  max-height: 90vh;
+  overflow-y: auto;
   flex-direction: column;
   align-items: center;
   position: fixed;
@@ -202,15 +203,71 @@
   color: white;
 }
 
-.popularAnimes ul li{
+.popularAnimes ul li, .favoritesPage ul li{
   width: 16%;
   margin-bottom: 20px;
 }
 
-.popularAnimes img {
+.popularAnimes img, .favoritesPage img {
   height: 300px;
   max-width: 212px;
   border-radius: 10px;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  align-items: flex-start;
+  background-color: antiquewhite ;
+}
+form label {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+form .input {
+  font-size: 26px;
+  border-radius: 5px;
+}
+
+form .submit {
+  margin-top: 20px;
+  width: 100%;
+  font-size: 20px;
+  padding: 14px;
+  border-radius: 10px;
+}
+
+.registerModal {
+  display: flex;
+  max-height: 90vh;
+  overflow-y: auto;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+}
+
+.favoritesPage ul {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin-top: 30px;
+  font-size: 12px;
+  color: white;
 }
 
 @media screen and (max-width: 1100px) {
@@ -252,5 +309,35 @@
   }
   .left {
     width: 85%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .App-header {
+    justify-content: space-between;
+  }
+  .searchBar {
+    font-size: 10px;
+  }
+  .navigation li {
+    font-size: 12px;
+    margin-left: 10px;
+  }
+  .App-header h1 {
+    font-size: 24px;
+  }
+  .left h1 {
+    font-size: 40px;
+  }
+  .left p {
+    font-size: 16px;
+  }
+  .popularAnimes ul li, .favoritesPage ul li {
+    width: 50%;
+    margin-bottom: 20px;
+  }
+  .popularAnimes img, .favoritesPage img {
+    height: 250px;
+    max-width: 212px;
   }
 }

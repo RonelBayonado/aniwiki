@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import axios from 'axios';
 import AddToFavoritesButton from './addToFavoritesButton'
 import DetailsButton from './detailsbutton';
 import { fetchTopAnime } from './../api/animeApi';
@@ -9,12 +10,13 @@ const Homepage = () => {
   const [anime, setAnime] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [videoOpen, setVideoOpen] = useState(false);
   const [detailsOpen, setDetailsOpen] = useState(false);
   const [youtubeId, setYoutubeId] = useState('');
   const [synopsis, setSynopsis] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
+ 
+  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const getAnimeData = async () => {
@@ -38,8 +40,20 @@ const Homepage = () => {
     setYoutubeId(youtubeId);
   }
   const closeModal = () => {
-    setVideoOpen(false);
     setDetailsOpen(false);
+  }
+  const addFavorite = (animeId, synopsis, title, image_url, youtube_id) => {
+    axios.post('http://localhost:5000/favorites', { animeId, synopsis, title, image_url, youtube_id }, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Assuming you've saved the token after login
+      }  
+    })
+    .then(response => {
+      console.log(response.data);
+    })
+    .catch(error => {
+      console.log('There was an error trying to add to favorites', error);
+    })
   }
  
   return (
@@ -66,7 +80,7 @@ const Homepage = () => {
                 <img src={anime.images.jpg.image_url} alt={anime.title} />
                 <h2>{anime.title}</h2>
                 <DetailsButton onClick={() => details(anime.synopsis, anime.title, anime.images.jpg.image_url, anime.trailer.youtube_id)} style={{fontSize: '13px', marginTop: '10px'}}  />
-                <AddToFavoritesButton style={{fontSize: '13px', marginTop: '10px'}} />
+                <AddToFavoritesButton onClick={() => addFavorite(anime.mal_id, anime.synopsis, anime.title, anime.images.jpg.image_url, anime.trailer.youtube_id)} style={{fontSize: '13px', marginTop: '10px'}}/>
               </li>
             ))}
           </ul>
