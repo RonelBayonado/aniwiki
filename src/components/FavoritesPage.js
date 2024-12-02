@@ -47,7 +47,7 @@ const FavoritesPage = () => {
             <li key={anime.animeId}>              
               <img src={anime.image_url} alt={anime.title} />
               <h2>{anime.title}</h2>
-              <DetailsButton onClick={() => details(anime.synopsis, anime.title, anime.image_url, anime.youtube_id)} style={{fontSize: '13px', marginTop: '10px'}}  />
+              <DetailsButton onClick={() => details(anime.synopsis, anime.title, anime.image_url, anime.trailer_youtube_id)} style={{fontSize: '13px', marginTop: '10px'}}  />
             </li>
           ))}
         </ul>

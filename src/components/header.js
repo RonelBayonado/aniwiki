@@ -6,13 +6,20 @@ import { CiLogin } from "react-icons/ci";
 
 const Header = () => {
   const [searchValue, setSearchValue] = useState('');
-  const [loggedIn, setLoggedIn] = useState(false);
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
 
   const handleSearch = () => {
     if (searchValue.trim()) {
       navigate(`/search/${searchValue}`);
     }
+  }
+
+  const handleLogout = () => {
+    if (window.confirm('Are you sure you want to log out?')) {
+      localStorage.removeItem('token');
+      navigate('/');
+    };
   }
 
   return (
@@ -32,7 +39,7 @@ const Header = () => {
           <ul className='navigation'>
             <li onClick={() => navigate('/favorites')}>Favorites</li>
           </ul>     
-          {loggedIn ? <CgProfile className='profile'/> : <CiLogin className='profile' onClick={() => navigate('/login')}/>}
+          {token ? <CgProfile className='profile' onClick={handleLogout}/> : <CiLogin className='profile' onClick={() => navigate('/login')}/>}
         </nav>       
       </header>
   )

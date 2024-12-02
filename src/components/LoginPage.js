@@ -19,6 +19,8 @@ const LoginPage = () => {
     })
     .then(response => {
       localStorage.setItem('token', response.data.token)
+      window.alert('Login successful')
+      navigate('/')
     })
     .catch(error => {
       console.log('There was an error logging in: ' + error)

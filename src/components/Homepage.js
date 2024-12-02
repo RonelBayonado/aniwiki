@@ -5,6 +5,7 @@ import DetailsButton from './detailsbutton';
 import { fetchTopAnime } from './../api/animeApi';
 import Detailsmodal from "./Detailsmodal";
 import Header from "./header";
+import { useNavigate } from 'react-router-dom';
 
 const Homepage = () => {
   const [anime, setAnime] = useState([]);
@@ -15,6 +16,7 @@ const Homepage = () => {
   const [synopsis, setSynopsis] = useState('');
   const [title, setTitle] = useState('');
   const [image, setImage] = useState('');
+  const navigate = useNavigate();
  
   const token = localStorage.getItem('token');
 
@@ -50,9 +52,13 @@ const Homepage = () => {
     })
     .then(response => {
       console.log(response.data);
+      window.alert('Anime added successfully')
     })
     .catch(error => {
       console.log('There was an error trying to add to favorites', error);
+      if (window.confirm("You need to login first before adding to favorites") === true) {
+        navigate(`/login`);
+      }
     })
   }
  
