@@ -1,7 +1,8 @@
 --AnimeWiki--
-AnimeWiki is a website where you can explore various anime, read their synopsis, and check their trailers. With a search function, you can search specific animes and add them to your favorites tab with the 'Add to Favorties' button. Jikan Api is used in acquiring anime data.
+AnimeWiki is a web platform where users can explore anime, read their synopsis, watch trailers, and manage favorites. The site integrates the Jikan API for anime data and features a backend built with Node.js, Express.js, and MySQL for secure user authentication and favorites management.
 
-![image](https://github.com/user-attachments/assets/bc177657-cd0d-41b8-942f-74177442e4d3)
-![image](https://github.com/user-attachments/assets/ab18cbb0-f33e-4bdc-81ff-54fe167e11a9)
-![image](https://github.com/user-attachments/assets/8c967fdc-d551-4330-9163-6c5dba9e363d)
+![image](https://github.com/user-attachments/assets/90cdf25e-26b7-4d5d-9291-cc1aa6d2eda3)
+![image](https://github.com/user-attachments/assets/429ac93b-0e9b-4d2e-a4af-26c3e6981c78)
+![image](https://github.com/user-attachments/assets/ff85eea2-12a5-419f-861d-51ec7a45ca99)
+![image](https://github.com/user-attachments/assets/84488279-2d69-4c1d-8f56-79048eb5a10e)
 
